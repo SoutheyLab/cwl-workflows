@@ -4,11 +4,11 @@
 # Directory containing fastqs to be run
 fastq_dir:
   class: Directory
-  path: /input_fastqs/
+  path: /scratch/vh83/sandbox/toil/test/input_fastqs/
 
 # Global core setting (used by all multi-threaded tools)
 cores: 16
-
+scatter_degree: 20
 
 # NOTE: RAM requirements are either fixed or calculated at runtime from cores or file size
 
@@ -38,66 +38,67 @@ cores: 16
 # Reference genome along with any accompanying secondary files (aligner indexes, .fai, etc.)
 reference: 
   class: File
-  path: /reference/Homo_sapiens_assembly38.fasta
+  path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.fasta
   secondaryFiles:
     # Auxiliary reference files
     - class: File
-      path: /reference/Homo_sapiens_assembly38.fasta.fai
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.fasta.fai
     - class: File
-      path: /reference/Homo_sapiens_assembly38.dict
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.dict
 
 # Ref genome and bwa index files
 bwa_reference:
   class: File
-  path: /reference/Homo_sapiens_assembly38.fasta
+  path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.fasta
   secondaryFiles:
     # Auxiliary reference files
     - class: File
-      path: /reference/Homo_sapiens_assembly38.fasta.fai
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.fasta.fai
     - class: File
-      path: /reference/Homo_sapiens_assembly38.dict
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.dict
     # BWA Index files
     - class: File
-      path: /reference/Homo_sapiens_assembly38.fasta.amb
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.64.fasta.amb
     - class: File
-      path: /reference/Homo_sapiens_assembly38.fasta.ann
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.64.fasta.ann
     - class: File
-      path: /reference/Homo_sapiens_assembly38.fasta.bwt
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.64.fasta.bwt
     - class: File
-      path: /reference/Homo_sapiens_assembly38.fasta.pac
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.64.fasta.pac
     - class: File
-      path: /reference/Homo_sapiens_assembly38.fasta.sa
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.64.fasta.sa
 
 # Calling intervals
 intervals:
   class: File
-  path: /reference/wgs_calling_regions.hg38.interval_list
+  path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/wgs_calling_regions.hg38.interval_list
 
 # dbSNP vcf
 dbsnp:
   class: File
-  path: /reference/Homo_sapiens_assembly38.dbsnp138.vcf
+  path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.dbsnp138.vcf
   secondaryFiles:
     - class: File
-      path: /reference/Homo_sapiens_assembly38.dbsnp138.vcf.idx
+      path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.dbsnp138.vcf.idx
 
 # Known indel sites
 known_indels:
   - class: File
-    path: /reference/Homo_sapiens_assembly38.known_indels.vcf.gz
+    path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.known_indels.vcf.gz
     secondaryFiles:
       - class: File
-        path: /reference/Homo_sapiens_assembly38.known_indels.vcf.gz.tbi
+        path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.known_indels.vcf.gz.tbi
+mills_indels:
   - class: File
-    path: /reference/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+    path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
     secondaryFiles:
       - class: File
-        path: /reference/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz.tbi
+        path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz.tbi
 
 # Also including reference dictionary separately so it can be used without staging all related reference files
 reference_dict:
   class: File
-  path: /reference/Homo_sapiens_assembly38.dict
+  path: /projects/vh83/reference/genomes/hg38/hg38_broad_resource_bundle/v0/Homo_sapiens_assembly38.dict
 
 # Additional reference files (reference indel/snp sets, etc.)
 
